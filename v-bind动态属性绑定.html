@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="app">
+    <!--<h2 class="active">{{name}} {{message}}</h2>-->
+    <h2 :class="{active:isActive,line:isLine}">{{name}} {{message}}</h2>
+    <h2 :class="getClass()">{{name}} {{message}}</h2>
+    <button v-on:click="gaibian">按钮</button>
+    <h2>{{name+' '+message}}</h2>
+    <h2>{{count * 2}}</h2>
+    <h2>{{url}}</h2>
+    <h2 v-html="url"></h2>
+    <img v-bind:src="imgURL">
+    <ul>
+        <li v-for="(item,index) in movies">{{index}}-{{item}}</li>
+    </ul>
+    <h2>总价格：{{totalPrice}}</h2><!--computed属性内的方法如果属性值不变，方法只会调用一遍，而methods的方法则会不断调用，影像性能-->
+    <!--<h2>总价格：{{getTotalPrice()}}</h2>-->
+    <h2>全名：{{fullName}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊',
+            name: '牛小利',
+            firstName:'niu',
+            lastName:'xiaoli',
+            count: 100,
+            url: '<a href="https://www.baidu.com/">百度一下</a>',
+            imgURL: 'https://img10.360buyimg.com/n2/jfs/t1/61982/24/21209/149005/6305d94dE753f78d7/4c31462017c3b8aa.jpg',
+            isActive: true,
+            isLine: true,
+            movies: ['少年派的奇幻漂流', '复仇者联盟', '速度与激情', '我不是药神'],
+            books: [{id: 1, name: '少年派的奇幻漂流', price: 120},
+                {id: 2, name: '复仇者联盟', price: 123},
+                {id: 3, name: '速度与激情', price: 34},
+                {id: 4, name: '我不是药神', price: 46}
+            ]
+        },
+        computed: {
+            totalPrice: function () {
+                console.log("aaaaaaaaaaa")
+                let count = 0;
+                for (let i = 0; i < this.books.length; i++) {
+                    count += this.books[i].price
+                }
+                return count;
+            },
+            fullName:function () {
+                console.log("aaaaaaaaaaa")
+                return this.firstName+this.lastName
+            }
+
+        },
+        methods: {
+            gaibian: function () {
+                this.isActive = !this.isActive
+            },
+            getClass: function () {
+                return {active: this.isActive, line: this.isLine}
+            },
+            getTotalPrice:function () {
+                console.log("aaaaaaaaaaa")
+                let count = 0;
+                for (let i = 0; i < this.books.length; i++) {
+                    count += this.books[i].price
+                }
+                return count;
+            }
+        }
+    })
+</script>
+</body>
+</html>

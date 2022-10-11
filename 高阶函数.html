@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        {{getFinalValue()}}
+        <div>
+            {{getFinalValue2()}}
+        </div>
+    </div>
+    <div>总和：{{getTotalCount()}}</div>
+    <div>总和2：{{getTotalCount2()}}</div>
+    <div>总和3：{{getTotalCount3()}}</div>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            info: [1, 25, 63, 656, 12, 356, 59, 232]
+        },
+        methods: {
+            getFinalValue() {
+                // 高阶函数filter遍历原数组，将小于100的数为true时添加到新的数组newInfo里，为false时过滤掉
+                let newInfo = this.info.filter(function (n) {
+                    return n < 100
+                })
+                return newInfo
+            },
+            //高阶函数map的使用
+            // map函数会遍历原数组，然后乘以2
+            getFinalValue2() {
+                let newInfo2 = this.info.map(function (n) {
+                    return n * 2
+                })
+                return newInfo2
+            },
+            // 高阶函数reduce的使用
+            // 作用：遍历原数组求和 reduce函数传2个参数，一个为回调函数，一个为0
+            getTotalCount() {
+                let totalCount = this.info.reduce(function (prevalue, n) {
+                    return prevalue + n
+                }, 0)
+                return totalCount
+            },
+            getTotalCount2() {
+                let totalCount = this.info.filter(function (n) {
+                    return n < 100
+                }).map(function (n) {
+                    return n * 2
+                }).reduce(function (previousValue, n) {
+                    return previousValue + n
+                }, 0)
+                return totalCount
+            },
+            getTotalCount3() {
+                let totalCount = this.info.filter(n => n < 100).map(n => n * 2).reduce((pre, n) => pre + n)
+                return totalCount
+            }
+        }
+    })
+</script>
+</body>
+</html>

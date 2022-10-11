@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="app">
+    <div @click="divClick">
+        aaaaaaaaaaa
+        <button @click.stop="btnClick">按钮</button><!--加上stop修饰符，当点击按钮时不会触发divClick方法-->
+    </div>
+    <br>
+    <form action="baidu">
+        <input type="submit" value="提交" @click.prevent="submitClick"><!--加上prevent修饰符，当点击提交按钮时不会触发默认的表单提交方法，只会执行submitClick方法-->
+    </form>
+    <br>
+    <input type="text" @keyup.enter="keyup"><!--加上enter修饰符，当点击回车时才会触发keyup方法，如果不加则随便按下哪个按键都会触发keyup方法-->
+    <br>
+    <button @click.once="once">按钮2</button><!--加上once修饰符，once方法只会被触发一次-->
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊',
+        },
+        methods: {
+            divClick(){
+                console.log("div按钮")
+            },
+            btnClick(){
+                console.log("按钮")
+            },
+            submitClick(){
+                console.log("提交按钮")
+            },
+            keyup(){
+                console.log("keyup")
+            },
+            once(){
+                console.log("once")
+            }
+
+        }
+    })
+</script>
+</body>
+</html>

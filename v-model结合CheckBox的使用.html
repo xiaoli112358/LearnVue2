@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <label for="agree">
+            <input type="checkbox" value="agree" v-model="isagree">同意
+        </label>
+        <div>您选择的是：{{isagree}}</div>
+    </div>
+
+    <div>
+        <input type="checkbox" value="篮球" v-model="hobbies">篮球
+        <input type="checkbox" value="足球" v-model="hobbies">足球
+        <input type="checkbox" value="排球" v-model="hobbies">排球
+        <input type="checkbox" value="台球" v-model="hobbies">台球
+        <div>您选择的爱好有：{{hobbies}}</div>
+    </div>
+
+    <div>
+        <label for="man">
+            <input type="radio" id="man" name="sex" value="男" v-model="sex">男 <!--赋一个name值就可以让两个选项互斥;但如果有了v-model的时候也可以实现互斥-->
+        </label>
+        <label for="woman">
+            <input type="radio" id="woman" name="sex" value="女" v-model="sex">女
+        </label>
+        <div>您选择性别为：{{sex}}</div>
+    </div>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            isagree: false,
+            hobbies:['撸啊撸'],
+            sex:''
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <label for="fruit"v-for="item in originalFruit">
+            <input type="checkbox" :value="item" v-model="fruits">{{item}}
+        </label>
+        <div>您选择的水果是：{{fruits}}</div>
+    </div>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            originalFruit:['苹果','草莓','榴莲','香蕉'],
+            fruits:[]
+        }
+    })
+</script>
+</body>
+</html>
